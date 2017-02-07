@@ -9,6 +9,7 @@ import com.player.muqindaxue.fragment.CollegeFragment;
 import com.player.muqindaxue.fragment.HomeFragment;
 import com.player.muqindaxue.fragment.MeFragment;
 import com.player.muqindaxue.fragment.UnityFragment;
+import com.player.muqindaxue.utils.ToastUtils;
 
 /**
  * Created by Administrator on 2017/2/7.
@@ -23,6 +24,10 @@ public class MainActivity extends BaseActivity{
     private CollegeFragment collegeFragment;
     private UnityFragment unityFragment;
     private MeFragment meFragment;
+    private boolean isPressedBackOnce = false;
+    private long first =0;
+    private long second =0;
+
     private RadioGroup.OnCheckedChangeListener MainCheckedListener = new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -79,5 +84,28 @@ public class MainActivity extends BaseActivity{
                 .add(R.id.fl_main,homeFragment).commit();
         rb_main_one.setChecked(true);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (isPressedBackOnce){
+            //已经点击了一次
+            second = System.currentTimeMillis();
+            if (second-first>2000){
+                //重新进行第一次点击
+                ToastUtils.showToast(this,"再点一次退出");
+                isPressedBackOnce = true;
+                first = System.currentTimeMillis();
+            }else {//直接退出
+                finish();
+                isPressedBackOnce = false;
+                first =0;
+                second =0;
+            }
+        }else {//没有点击
+            ToastUtils.showToast(this,"再点一次退出");
+            isPressedBackOnce = true;
+            first = System.currentTimeMillis();
+        }
     }
 }
