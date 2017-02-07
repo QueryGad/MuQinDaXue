@@ -3,10 +3,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:clipToPadding="true">
-    <TextView
-        android:layout_width="wrap_content"
+    android:clipToPadding="true"
+    android:orientation="vertical">
+    <FrameLayout
+        android:id="@+id/fl_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <RadioGroup
+        android:id="@+id/rg_main"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="住页面"
-        android:layout_gravity="center"/>
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/rb_main_one"
+            style="@style/rb_main_line"
+            android:drawableTop="@drawable/tab_main_one"
+            android:text="首页"
+            android:textSize="11sp"
+            android:textColor="@drawable/tab_text_corlor"
+            />
+        <RadioButton
+            android:id="@+id/rb_main_two"
+            style="@style/rb_main_line"
+            android:drawableTop="@drawable/tab_main_two"
+            android:text="学院"
+            android:textSize="11sp"
+            android:textColor="@drawable/tab_text_corlor"
+            />
+        <RadioButton
+            android:id="@+id/rb_main_three"
+            style="@style/rb_main_line"
+            android:drawableTop="@drawable/tab_main_three"
+            android:text="社区"
+            android:textSize="11sp"
+            android:textColor="@drawable/tab_text_corlor"
+            />
+        <RadioButton
+            android:id="@+id/rb_main_four"
+            style="@style/rb_main_line"
+            android:drawableTop="@drawable/tab_main_four"
+            android:text="我的"
+            android:textSize="11sp"
+            android:textColor="@drawable/tab_text_corlor"
+            />
+    </RadioGroup>
 </LinearLayout>
