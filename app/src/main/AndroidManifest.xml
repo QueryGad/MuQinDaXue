@@ -30,6 +30,12 @@
         <activity android:name=".activity.MainActivity"/>//主页面
         <activity android:name=".activity.GuideActicity"/>//欢迎页面
         <activity android:name=".login.LoginActivity"/>//登录页面
+
+        //社区
+        <activity android:name=".unity.MyCirleActivity" /> //圈子
+        <activity android:name=".unity.ConsultActivity"/> //咨询
+        <activity android:name=".unity.ActivityActivity"/>//活动
+        <activity android:name=".unity.FrendActivity"/>//好友
     </application>
 
 </manifest>

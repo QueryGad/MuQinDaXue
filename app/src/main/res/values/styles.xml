@@ -23,12 +23,5 @@
         <item name="android:layout_marginTop">15dp</item>
         <item name="android:layout_marginBottom">15dp</item>
     </style>
-    <style name="MyWidgetList">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:cacheColorHint">#00ffffff</item>
-        <item name="android:dividerHeight">2px</item>
-        <item name="android:listSelector">@android:color/transparent</item>
-        <item name="android:fadeScrollbars">true</item>
-    </style>
 
 </resources>

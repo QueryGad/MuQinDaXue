@@ -1,48 +1,85 @@
 package com.player.muqindaxue.fragment;
 
-import android.animation.Animator;
-import android.animation.ObjectAnimator;
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
+import com.google.gson.Gson;
 import com.player.muqindaxue.R;
-import com.player.muqindaxue.activity.MainActivity;
+import com.player.muqindaxue.adapter.UnityAdapter;
+import com.player.muqindaxue.bean.HotArticleBean;
+import com.player.muqindaxue.unity.ActivityActivity;
+import com.player.muqindaxue.unity.ConsultActivity;
+import com.player.muqindaxue.unity.FrendActivity;
+import com.player.muqindaxue.unity.MyCirleActivity;
+import com.player.muqindaxue.utils.ConfigUtils;
+import com.player.muqindaxue.utils.PrefUtils;
+import com.yolanda.nohttp.NoHttp;
+import com.yolanda.nohttp.rest.OnResponseListener;
+import com.yolanda.nohttp.rest.Request;
+import com.yolanda.nohttp.rest.RequestQueue;
+import com.yolanda.nohttp.rest.Response;
+import com.youth.banner.Banner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/2/7.
  * 社区
  */
 
-public class UnityFragment extends Fragment implements Animator.AnimatorListener{
+public class UnityFragment extends Fragment{
 
+    private static final int GET_UNITY_DATA = 001;
     private View view;
     private ListView lv_unity;
-    private RelativeLayout rl_unity;
-    protected Context mContext;
-    private View ll_unity;
-    private boolean mIsTitleHide = false;
-    private boolean mIsAnim = false;
-    private float lastX = 0;
-    private float lastY = 0;
-    private boolean isDown = false;
-    private boolean isUp = false;
-    private ImageView iv_unity_title;
-    private MainActivity.MyOnTouchListener myOnTouchListener;
+    private View headView;
+    private RequestQueue requestQueue;
+    private String apptoken;
+    private List<HotArticleBean.TrendsBean> trendsList = new ArrayList<>();
+    private RadioGroup.OnCheckedChangeListener UnityCheckListener = new RadioGroup.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(RadioGroup radioGroup, int i) {
+            switch (i){
+                case R.id.rb_unity_cirle:
+                    //圈子
+                    Intent intent1 = new Intent(getActivity(), MyCirleActivity.class);
+                    startActivity(intent1);
+                    break;
+                case R.id.rb_unity_consult:
+                    //咨询
+                    Intent intent2 = new Intent(getActivity(), ConsultActivity.class);
+                    startActivity(intent2);
+                    break;
+                case R.id.rb_unity_activity:
+                    //活动
+                    Intent intent3 = new Intent(getActivity(), ActivityActivity.class);
+                    startActivity(intent3);
+                    break;
+                case R.id.rb_unity_frend:
+                    //好友
+                    Intent intent4 = new Intent(getActivity(), FrendActivity.class);
+                    startActivity(intent4);
+                    break;
+
+            }
+        }
+    };
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frg_unity,null);
+        requestQueue = NoHttp.newRequestQueue();
         initView();
         initListener();
         initData();
@@ -51,116 +88,68 @@ public class UnityFragment extends Fragment implements Animator.AnimatorListener
 
     private void initView() {
         lv_unity = (ListView) view.findViewById(R.id.lv_unity);
-        ll_unity = view.findViewById(R.id.ll_unity);
-        rl_unity = (RelativeLayout) view.findViewById(R.id.rl_unity);
-        iv_unity_title = (ImageView) view.findViewById(R.id.iv_unity_title);
+
     }
 
     private void initListener() {
-        myOnTouchListener = new MainActivity.MyOnTouchListener() {
-            @Override
-            public boolean dispatchTouchEvent(MotionEvent ev) {
-                return dispathTouchEvent(ev);
-            }
-        };
-        ((MainActivity) getActivity()).registerMyOnTouchListener(myOnTouchListener);
+
     }
 
     private void initData() {
-
+          netWork();
     }
 
-    private boolean dispathTouchEvent(MotionEvent event){
-        if (mIsAnim) {
-            return false;
-        }
-        final int action = event.getAction();
+    private void netWork() {
+        apptoken = PrefUtils.getString(getActivity(), "apptoken", "");
+        Request<String> request = NoHttp.createStringRequest(ConfigUtils.UNITY_URL);
+        request.add("op","retie");
+        request.add("apptoken",apptoken);
+        request.add("lastIndex","0");
+        requestQueue.add(GET_UNITY_DATA, request, new OnResponseListener<String>() {
+            @Override
+            public void onStart(int what) {
 
-        float x = event.getX();
-        float y = event.getY();
+            }
 
-        switch (action) {
-            case MotionEvent.ACTION_DOWN:
-                lastY = y;
-                lastX = x;
-                return false;
-            case MotionEvent.ACTION_MOVE:
-                float dY = Math.abs(y - lastY);
-                float dX = Math.abs(x - lastX);
-                boolean down = y > lastY ? true : false;
-                lastY = y;
-                lastX = x;
-                isUp = dX < 8 && dY > 8 && !mIsTitleHide && !down ;
-                isDown = dX < 8 && dY > 8 && mIsTitleHide && down;
-                if (isUp) {
-                    View view = this.ll_unity;
-                    float[] f = new float[2];
-                    f[0] = 0.0F;
-                    f[1] = -iv_unity_title.getHeight();
-                    ObjectAnimator animator1 = ObjectAnimator.ofFloat(view, "translationY", f);
-                    animator1.setInterpolator(new AccelerateDecelerateInterpolator());
-                    animator1.setDuration(400);
-                    animator1.start();
-                    animator1.addListener(this);
-
-                    setMarginTop(ll_unity.getHeight() - iv_unity_title.getHeight());
-                } else if (isDown) {
-                    View view = this.ll_unity;
-                    float[] f = new float[2];
-                    f[0] = -ll_unity.getHeight();
-                    f[1] = 0F;
-                    ObjectAnimator animator1 = ObjectAnimator.ofFloat(view, "translationY", f);
-                    animator1.setDuration(600);
-                    animator1.setInterpolator(new AccelerateDecelerateInterpolator());
-                    animator1.start();
-                    animator1.addListener(this);
-                } else {
-                    return false;
+            @Override
+            public void onSucceed(int what, Response<String> response) {
+                String info = response.get();
+                if (info!=null){
+                    parseJson(info);
                 }
-                mIsTitleHide = !mIsTitleHide;
-                mIsAnim = true;
-                break;
-            default:
-                return false;
-        }
-        return false;
+            }
 
+            @Override
+            public void onFailed(int what, Response<String> response) {
+
+            }
+
+            @Override
+            public void onFinish(int what) {
+
+            }
+        });
+        initHead();
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mContext = context.getApplicationContext();
+    private void parseJson(String info) {
+        Gson gson = new Gson();
+        HotArticleBean hotArticleBean = gson.fromJson(info, HotArticleBean.class);
+        trendsList = hotArticleBean.getTrends();
+        UnityAdapter adapter = new UnityAdapter(getActivity(),trendsList);
+        lv_unity.setAdapter(adapter);
     }
 
-    public void setMarginTop(int page){
-        RelativeLayout.LayoutParams layoutParam = new RelativeLayout.LayoutParams( RelativeLayout.LayoutParams.FILL_PARENT, RelativeLayout.LayoutParams.FILL_PARENT);
-        layoutParam.setMargins(0, page, 0, 0);
-        lv_unity.setLayoutParams(layoutParam);
-        lv_unity.invalidate();
-    }
+    private void initHead() {
+        headView = View.inflate(getActivity(),R.layout.head_unity,null);
+        Banner banner_unity = (Banner) headView.findViewById(R.id.banner_unity);
+        RadioGroup rg_unity = (RadioGroup) headView.findViewById(R.id.rg_unity);
+        RadioButton rb_unity_cirle = (RadioButton) headView.findViewById(R.id.rb_unity_cirle);
+        RadioButton rb_unity_consult = (RadioButton) headView.findViewById(R.id.rb_unity_consult);
+        RadioButton rb_unity_activity = (RadioButton) headView.findViewById(R.id.rb_unity_activity);
+        RadioButton rb_unity_frend = (RadioButton) headView.findViewById(R.id.rb_unity_frend);
+        rg_unity.setOnCheckedChangeListener(UnityCheckListener);
 
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-
-    }
-
-    @Override
-    public void onAnimationEnd(Animator animator) {
-        if(isDown){
-            setMarginTop(ll_unity.getHeight());
-        }
-        mIsAnim = false;
-    }
-
-    @Override
-    public void onAnimationCancel(Animator animator) {
-
-    }
-
-    @Override
-    public void onAnimationRepeat(Animator animator) {
-
+        lv_unity.addHeaderView(headView);
     }
 }
