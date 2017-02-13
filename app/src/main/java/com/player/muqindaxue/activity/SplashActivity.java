@@ -49,6 +49,7 @@ public class SplashActivity extends BaseActivity {
     private DownloadQueue downloadQueue;
     private int versionCode;
     private AlertDialog dialog;
+    public static final String ACTION_ADD_SHORTCUT = "com.android.launcher.action.INSTALL_SHORTCUT";
 
 
     @Override

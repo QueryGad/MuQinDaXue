@@ -1,5 +1,8 @@
 package com.player.muqindaxue.activity;
 
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -10,6 +13,8 @@ import com.player.muqindaxue.fragment.HomeFragment;
 import com.player.muqindaxue.fragment.MeFragment;
 import com.player.muqindaxue.fragment.UnityFragment;
 import com.player.muqindaxue.utils.ToastUtils;
+
+import java.util.ArrayList;
 
 /**
  * Created by Administrator on 2017/2/7.
@@ -86,6 +91,7 @@ public class MainActivity extends BaseActivity{
 
     }
 
+
     @Override
     public void onBackPressed() {
         if (isPressedBackOnce){
@@ -107,5 +113,36 @@ public class MainActivity extends BaseActivity{
             isPressedBackOnce = true;
             first = System.currentTimeMillis();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
+    private ArrayList<MyOnTouchListener> onTouchListeners = new ArrayList<MyOnTouchListener>(10);
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        for (MyOnTouchListener listener : onTouchListeners) {
+            listener.dispatchTouchEvent(ev);
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+    public void registerMyOnTouchListener(MyOnTouchListener myOnTouchListener) {
+        onTouchListeners.add(myOnTouchListener);
+    }
+
+    public void unregisterMyOnTouchListener(MyOnTouchListener myOnTouchListener) {
+        onTouchListeners.remove(myOnTouchListener);
+    }
+
+    public interface MyOnTouchListener {
+        public boolean dispatchTouchEvent(MotionEvent ev);
     }
 }

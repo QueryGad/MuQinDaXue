@@ -6,7 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import com.player.muqindaxue.R;
 
 /**
  * Created by Administrator on 2017/2/7.
@@ -15,11 +16,12 @@ import android.widget.TextView;
 
 public class HomeFragment extends Fragment{
 
+    private View view;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        TextView tv = new TextView(getActivity());
-        tv.setText("首页");
-        return tv;
+        view = inflater.inflate(R.layout.frg_home,null);
+        return view;
     }
 }
