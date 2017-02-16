@@ -7,10 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
+import com.facebook.rebound.SimpleSpringListener;
+import com.facebook.rebound.Spring;
+import com.facebook.rebound.SpringSystem;
 import com.google.gson.Gson;
 import com.player.muqindaxue.R;
 import com.player.muqindaxue.adapter.UnityAdapter;
@@ -45,34 +47,6 @@ public class UnityFragment extends Fragment{
     private RequestQueue requestQueue;
     private String apptoken;
     private List<HotArticleBean.TrendsBean> trendsList = new ArrayList<>();
-    private RadioGroup.OnCheckedChangeListener UnityCheckListener = new RadioGroup.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(RadioGroup radioGroup, int i) {
-            switch (i){
-                case R.id.rb_unity_cirle:
-                    //圈子
-                    Intent intent1 = new Intent(getActivity(), MyCirleActivity.class);
-                    startActivity(intent1);
-                    break;
-                case R.id.rb_unity_consult:
-                    //咨询
-                    Intent intent2 = new Intent(getActivity(), ConsultActivity.class);
-                    startActivity(intent2);
-                    break;
-                case R.id.rb_unity_activity:
-                    //活动
-                    Intent intent3 = new Intent(getActivity(), ActivityActivity.class);
-                    startActivity(intent3);
-                    break;
-                case R.id.rb_unity_frend:
-                    //好友
-                    Intent intent4 = new Intent(getActivity(), FrendActivity.class);
-                    startActivity(intent4);
-                    break;
-
-            }
-        }
-    };
 
 
     @Nullable
@@ -143,12 +117,123 @@ public class UnityFragment extends Fragment{
     private void initHead() {
         headView = View.inflate(getActivity(),R.layout.head_unity,null);
         Banner banner_unity = (Banner) headView.findViewById(R.id.banner_unity);
-        RadioGroup rg_unity = (RadioGroup) headView.findViewById(R.id.rg_unity);
-        RadioButton rb_unity_cirle = (RadioButton) headView.findViewById(R.id.rb_unity_cirle);
-        RadioButton rb_unity_consult = (RadioButton) headView.findViewById(R.id.rb_unity_consult);
-        RadioButton rb_unity_activity = (RadioButton) headView.findViewById(R.id.rb_unity_activity);
-        RadioButton rb_unity_frend = (RadioButton) headView.findViewById(R.id.rb_unity_frend);
-        rg_unity.setOnCheckedChangeListener(UnityCheckListener);
+
+        final ImageView iv_unity_cirle = (ImageView) headView.findViewById(R.id.iv_unity_cirle);
+        final ImageView iv_unity_consult = (ImageView) headView.findViewById(R.id.iv_unity_consult);
+        final ImageView iv_unity_act = (ImageView) headView.findViewById(R.id.iv_unity_act);
+        final ImageView iv_unity_frend = (ImageView) headView.findViewById(R.id.iv_unity_frend);
+
+        //我的圈子
+        iv_unity_cirle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SpringSystem springSystem = SpringSystem.create();
+                Spring spring = springSystem.createSpring();
+                spring.addListener(new SimpleSpringListener(){
+                    @Override
+                    public void onSpringUpdate(Spring spring) {
+                        float value = (float) spring.getCurrentValue();
+                        float scale = 1f - (value * 0.3f);
+                        iv_unity_cirle.setScaleX(scale);
+                        iv_unity_cirle.setScaleY(scale);
+                    }
+                    @Override
+                    public void onSpringAtRest(Spring spring) {
+                        float value = (float) spring.getCurrentValue();
+                        iv_unity_cirle.setScaleX(value);
+                        iv_unity_cirle.setScaleY(value);
+                    }
+                });
+                spring.setEndValue(1);
+                //圈子
+                Intent intent1 = new Intent(getActivity(), MyCirleActivity.class);
+                startActivity(intent1);
+            }
+        });
+
+        //咨询
+        iv_unity_consult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SpringSystem springSystem = SpringSystem.create();
+                Spring spring = springSystem.createSpring();
+                spring.addListener(new SimpleSpringListener(){
+                    @Override
+                    public void onSpringUpdate(Spring spring) {
+                        float value = (float) spring.getCurrentValue();
+                        float scale = 1f - (value * 0.3f);
+                        iv_unity_consult.setScaleX(scale);
+                        iv_unity_consult.setScaleY(scale);
+                    }
+                    @Override
+                    public void onSpringAtRest(Spring spring) {
+                        float value = (float) spring.getCurrentValue();
+                        iv_unity_consult.setScaleX(value);
+                        iv_unity_consult.setScaleY(value);
+                    }
+                });
+                spring.setEndValue(1);
+                //咨询
+                Intent intent2 = new Intent(getActivity(), ConsultActivity.class);
+                startActivity(intent2);
+            }
+        });
+
+        //活动
+        iv_unity_act.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SpringSystem springSystem = SpringSystem.create();
+                Spring spring = springSystem.createSpring();
+                spring.addListener(new SimpleSpringListener(){
+                    @Override
+                    public void onSpringUpdate(Spring spring) {
+                        float value = (float) spring.getCurrentValue();
+                        float scale = 1f - (value * 0.3f);
+                        iv_unity_act.setScaleX(scale);
+                        iv_unity_act.setScaleY(scale);
+                    }
+                    @Override
+                    public void onSpringAtRest(Spring spring) {
+                        float value = (float) spring.getCurrentValue();
+                        iv_unity_act.setScaleX(value);
+                        iv_unity_act.setScaleY(value);
+                    }
+                });
+                spring.setEndValue(1);
+                //活动
+                Intent intent3 = new Intent(getActivity(), ActivityActivity.class);
+                startActivity(intent3);
+            }
+        });
+
+        //好友
+        iv_unity_frend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SpringSystem springSystem = SpringSystem.create();
+                Spring spring = springSystem.createSpring();
+                spring.addListener(new SimpleSpringListener(){
+                    @Override
+                    public void onSpringUpdate(Spring spring) {
+                        float value = (float) spring.getCurrentValue();
+                        float scale = 1f - (value * 0.3f);
+                        iv_unity_frend.setScaleX(scale);
+                        iv_unity_frend.setScaleY(scale);
+                    }
+                    @Override
+                    public void onSpringAtRest(Spring spring) {
+                        float value = (float) spring.getCurrentValue();
+                        iv_unity_frend.setScaleX(value);
+                        iv_unity_frend.setScaleY(value);
+                    }
+                });
+                spring.setEndValue(1);
+                //好友
+                Intent intent4 = new Intent(getActivity(), FrendActivity.class);
+                startActivity(intent4);
+            }
+        });
 
         lv_unity.addHeaderView(headView);
     }

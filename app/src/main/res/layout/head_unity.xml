@@ -8,38 +8,84 @@
         android:layout_width="match_parent"
         android:layout_height="175dp"
         />
-    <RadioGroup
-        android:id="@+id/rg_unity"
+    <LinearLayout
+        android:id="@+id/ll_unity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingBottom="14dp"
         android:background="@color/white"
         android:orientation="horizontal">
-        <RadioButton
-            android:id="@+id/rb_unity_cirle"
-            style="@style/rb_unity_list"
-            android:drawableTop="@mipmap/ic_launcher"
-            android:drawablePadding="8dp"
-            android:text="圈子"
-            />
-        <RadioButton
-            android:id="@+id/rb_unity_consult"
-            style="@style/rb_unity_list"
-            android:drawableTop="@mipmap/ic_launcher"
-            android:drawablePadding="8dp"
-            android:text="咨询"/>
-        <RadioButton
-            android:id="@+id/rb_unity_activity"
-            style="@style/rb_unity_list"
-            android:drawableTop="@mipmap/ic_launcher"
-            android:drawablePadding="8dp"
-            android:text="活动"/>
-        <RadioButton
-            android:id="@+id/rb_unity_frend"
-            style="@style/rb_unity_list"
-            android:drawableTop="@mipmap/ic_launcher"
-            android:drawablePadding="8dp"
-            android:text="好友"/>
-    </RadioGroup>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/iv_unity_cirle"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@mipmap/ic_launcher"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="圈子"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/iv_unity_consult"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@mipmap/ic_launcher"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="咨询"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/iv_unity_act"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@mipmap/ic_launcher"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="活动"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/iv_unity_frend"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@mipmap/ic_launcher"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="好友"/>
+        </LinearLayout>
+
+    </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
