@@ -22,6 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="名字"
+            android:textSize="15sp"
+            android:textColor="#343434"
             android:layout_toRightOf="@id/iv_unityitem"
             android:layout_marginLeft="10dp"
             />
@@ -33,7 +35,8 @@
             android:layout_toRightOf="@id/iv_unityitem"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="7dp"
-            android:textSize="12sp"
+            android:textSize="11sp"
+            android:textColor="#a3a3a3"
             android:text="时间戳"/>
         <TextView
             android:id="@+id/tv_unityitem_cirle"
@@ -41,15 +44,16 @@
             android:layout_height="wrap_content"
             android:text="亲子教育"
             android:layout_marginTop="6dp"
-            android:textSize="12sp"
+            android:textSize="11sp"
             android:textColor="@color/main_text_color"
             android:layout_alignParentRight="true"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="来自 : "
-            android:textSize="12sp"
+            android:textSize="11sp"
             android:layout_marginTop="6dp"
+            android:textColor="#777777"
             android:layout_toLeftOf="@id/tv_unityitem_cirle"/>
         <TextView
             android:id="@+id/tv_unityitem_title"
@@ -58,8 +62,8 @@
             android:singleLine="true"
             android:ellipsize="end"
             android:layout_marginTop="18dp"
-            android:textSize="16sp"
-            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textColor="#343434"
             android:text="标题"
             android:layout_below="@id/tv_unityitem_date"/>
         <TextView
@@ -71,6 +75,7 @@
             android:ellipsize="end"
             android:layout_marginTop="10dp"
             android:textSize="12sp"
+            android:textColor="#575757"
             android:text="详情"
             />
         <com.lzy.ninegrid.NineGridView

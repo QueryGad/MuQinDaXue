@@ -19,7 +19,8 @@
             style="@style/rb_unity_list"
             android:drawableTop="@mipmap/ic_launcher"
             android:drawablePadding="8dp"
-            android:text="圈子"/>
+            android:text="圈子"
+            />
         <RadioButton
             android:id="@+id/rb_unity_consult"
             style="@style/rb_unity_list"

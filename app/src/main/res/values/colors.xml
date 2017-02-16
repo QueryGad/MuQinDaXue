@@ -4,7 +4,8 @@
     <color name="colorPrimaryDark">#000</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#fff</color>
-    <color name="main_bac">#f7f7f7</color>
-    <color name="main_text_color">#F4BD8C</color>
+    <color name="main_bac">#EEF1F1</color>
+    <color name="main_text_color">#ED8812</color>
     <color name="black">#000</color>
+    <color name="trans">#00000000</color>
 </resources>
