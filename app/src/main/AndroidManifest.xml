@@ -48,6 +48,9 @@
         <activity android:name=".me.SuperMarketActivity"/>//商城
         <activity android:name=".me.InviteFrendActivity"/>//邀请好友
         <activity android:name=".me.LuckeyActivity"/>//我的福田
+        <activity android:name=".me.SettingActivity"/>//设置
+        <activity android:name=".me.MessageActivity"/>//消息
+        <activity android:name=".me.EditActivity"/>//资料设置
     </application>
 
 </manifest>

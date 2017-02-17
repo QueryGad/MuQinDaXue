@@ -15,17 +15,17 @@
         android:text="标题"
         android:layout_marginTop="14dp"
         android:textSize="15sp"
-        android:textColor="#343434"
+        android:textColor="#323232"
         />
     <TextView
         android:id="@+id/tv_home_read_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textSize="11sp"
+        android:textSize="12sp"
         android:singleLine="true"
         android:ellipsize="end"
-        android:textColor="#a3a3a3"
+        android:textColor="#8c8c8c"
         android:layout_marginBottom="20dp"
         android:text="简介"/>
 </LinearLayout>

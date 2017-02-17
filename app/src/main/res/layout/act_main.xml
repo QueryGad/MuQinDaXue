@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFF"
-        android:paddingTop="5dp"
+        android:paddingTop="12dp"
         android:paddingBottom="3dp"
         android:orientation="horizontal">
         <RadioButton
@@ -27,7 +27,7 @@
             style="@style/rb_main_line"
             android:drawableTop="@drawable/tab_main_one"
             android:text="首页"
-            android:textSize="11sp"
+            android:textSize="12sp"
             android:textColor="@drawable/tab_text_corlor"
             />
         <RadioButton
@@ -35,7 +35,7 @@
             style="@style/rb_main_line"
             android:drawableTop="@drawable/tab_main_two"
             android:text="学院"
-            android:textSize="11sp"
+            android:textSize="12sp"
             android:textColor="@drawable/tab_text_corlor"
             />
         <RadioButton
@@ -43,7 +43,7 @@
             style="@style/rb_main_line"
             android:drawableTop="@drawable/tab_main_three"
             android:text="社区"
-            android:textSize="11sp"
+            android:textSize="12sp"
             android:textColor="@drawable/tab_text_corlor"
             />
         <RadioButton
@@ -51,7 +51,7 @@
             style="@style/rb_main_line"
             android:drawableTop="@drawable/tab_main_four"
             android:text="我的"
-            android:textSize="11sp"
+            android:textSize="12sp"
             android:textColor="@drawable/tab_text_corlor"
             />
     </RadioGroup>

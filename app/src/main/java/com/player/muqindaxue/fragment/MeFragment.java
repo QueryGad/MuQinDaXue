@@ -1,5 +1,6 @@
 package com.player.muqindaxue.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,9 @@ import android.widget.TextView;
 
 import com.player.muqindaxue.R;
 import com.player.muqindaxue.adapter.MeAdapter;
+import com.player.muqindaxue.me.EditActivity;
+import com.player.muqindaxue.me.MessageActivity;
+import com.player.muqindaxue.me.SettingActivity;
 import com.youth.banner.Banner;
 
 /**
@@ -20,7 +24,7 @@ import com.youth.banner.Banner;
  * 我的
  */
 
-public class MeFragment extends Fragment{
+public class MeFragment extends Fragment implements View.OnClickListener {
 
     private View view;
     private ImageButton ib_me_setting,ib_me_msg;
@@ -30,9 +34,9 @@ public class MeFragment extends Fragment{
     private GridView gv_me_function;
     private Banner banner_me;
 
-    private int [] iconFunction = {R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher, R.mipmap.ic_launcher,R.mipmap.ic_launcher,};
+    private int [] iconFunction = {R.mipmap.my_btn_gz,R.mipmap.my_btn_fs,R.mipmap.my_btn_qb,
+            R.mipmap.my_btn_dd,R.mipmap.my_btn_kc,R.mipmap.my_btn_zb,R.mipmap.my_btn_sc,
+            R.mipmap.my_btn_shop, R.mipmap.my_btn_yqhy,R.mipmap.my_btn_ft,};
 
     private String [] icontext = {"关注","粉丝","我的钱包","我的订单","我的课程","我的直播",
             "我的收藏","商城","邀请好友","我的福田",};
@@ -56,11 +60,33 @@ public class MeFragment extends Fragment{
         gv_me_function = (GridView) view.findViewById(R.id.gv_me_function);
         banner_me = (Banner) view.findViewById(R.id.banner_me);
 
+        ib_me_setting.setOnClickListener(this);
+        ib_me_msg.setOnClickListener(this);
+        iv_me_edit.setOnClickListener(this);
+
         MeAdapter adapter = new MeAdapter(getActivity(),iconFunction,icontext);
         gv_me_function.setAdapter(adapter);
     }
 
     private void initData() {
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.ib_me_setting:
+                Intent intent = new Intent(getActivity(), SettingActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.ib_me_msg:
+                Intent intent1 = new Intent(getActivity(), MessageActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.iv_me_edit:
+                Intent intent2 = new Intent(getActivity(), EditActivity.class);
+                startActivity(intent2);
+                break;
+        }
     }
 }

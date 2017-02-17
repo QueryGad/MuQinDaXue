@@ -99,9 +99,9 @@
             android:id="@+id/iv_unityitem_commentnum"
             android:layout_width="19dp"
             android:layout_height="15dp"
-            android:layout_marginTop="11dp"
+            android:layout_marginTop="14dp"
             android:layout_below="@id/ng_nuity"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/btn_ly"
             android:layout_marginRight="8dp"
             android:layout_toLeftOf="@id/tv_unityitem_commentnum"
             />
@@ -117,9 +117,9 @@
         <ImageView
             android:layout_width="19dp"
             android:layout_height="15dp"
-            android:layout_marginTop="11dp"
+            android:layout_marginTop="13dp"
             android:layout_below="@id/ng_nuity"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/btn_ll"
             android:layout_marginRight="8dp"
             android:layout_toLeftOf="@id/tv_unityitem_recordnum"
             />

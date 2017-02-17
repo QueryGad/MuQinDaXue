@@ -26,7 +26,7 @@
                 android:id="@+id/iv_unity_cirle"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/tab_qz"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                 android:id="@+id/iv_unity_consult"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/tab_zx"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
                 android:id="@+id/iv_unity_act"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/tab_hd"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
                 android:id="@+id/iv_unity_frend"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/tab_hy"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
